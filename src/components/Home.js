@@ -1,9 +1,15 @@
 import React from "react";
+import Header from "../views/Header.js";
+
 
 export default function Home(props) {
   return (
-    <div>
-      <h1>Home</h1>
-    </div>
+    <>
+      <Header />
+      <div>
+        <h1>PQuest</h1>
+      </div>
+    </>
+
   );
 }
