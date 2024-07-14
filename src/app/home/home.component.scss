@@ -1,0 +1,23 @@
+.home-container {
+  width: 100%;
+}
+@media (min-width: 768px) {
+  .home-container {
+    max-width: 768px;
+  }
+}
+@media (min-width: 1024px) {
+  .home-container {
+    max-width: 1024px;
+  }
+}
+@media (min-width: 1280px) {
+  .home-container {
+    max-width: 1280px;
+  }
+}
+@media (min-width: 1536px) {
+  .home-container {
+    max-width: 1536px;
+  }
+}
