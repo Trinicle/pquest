@@ -1,93 +1,65 @@
-<div class="pt-20 pb-80">
-  <div class="p-6 border border-gray-300 rounded-xl bg-white text-default">
-    <div class="flex flex-col mb-6">
-      <div class="flex">
-        <div class="mr-3">
-          <img src="assets/images/user-image-with-black-background.png" class="w-[48px]" />
+<dialog id="myModal" class="modal" #modal>
+  <div class="rounded-xl overflow-hidden">
+    <div class="w-[700px] h-[750px] overflow-y-scroll p-6 bg-white text-default">
+      <div class="flex flex-col mb-6">
+        <div class="flex">
+          <div class="mr-3">
+            <img src="assets/images/user-image-with-black-background.png" class="w-[48px]" />
+          </div>
+          <div class="flex flex-col text-xs">
+            <p class="font-semibold">New user</p>
+            <p class="text-gray-400">Junior Software Developer</p>
+            <p class="text-gray-400">Blank Company</p>
+          </div>
         </div>
-        <div class="flex flex-col text-xs">
-          <p class="font-semibold">New user</p>
-          <p class="text-gray-400">Junior Software Developer</p>
-          <p class="text-gray-400">Blank Company</p>
-        </div>
       </div>
-    </div>
-    <form [formGroup]="form">
-      <div class="mb-6">
-        <input
-          class="w-full border border-gray-300 rounded-xl outline-none p-3"
-          placeholder="Title"
-          formControlName="title"
-        />
-      </div>
-      <div class="mb-6">
-        <textarea
-          class="w-full border border-gray-300 rounded-xl outline-none p-3"
-          rows="5"
-          placeholder="Description"
-          maxlength="250"
-          formControlName="description"
-        ></textarea>
-      </div>
-      <div class="mb-6">
-        <textarea
-          class="w-full border border-gray-300 rounded-xl outline-none p-3"
-          rows="10"
-          placeholder="Quest Description"
-          maxlength="5000"
-          formControlName="questDescription"
-        ></textarea>
-      </div>
-      <div class="mb-6">
-        <input
-          class="w-full border border-gray-300 rounded-xl outline-none p-3"
-          placeholder="Repository"
-          formControlName="repository"
-        />
-      </div>
-      <div class="mb-6">
-        <mat-form-field class="example-chip-list">
-          <mat-label>Keys</mat-label>
-          <mat-chip-grid #chipGrid aria-label="Fruit selection">
-            @for (key of keys(); track $index) {
-              <mat-chip-row (removed)="remove(key)">
-                {{ key }}
-                <button matChipRemove [attr.aria-label]="'remove ' + key">
-                  <mat-icon>cancel</mat-icon>
-                </button>
-              </mat-chip-row>
-            }
-          </mat-chip-grid>
+      <form [formGroup]="form">
+        <div class="mb-6">
           <input
-            name="currentKey"
-            placeholder="New key..."
-            #fruitInput
-            formControlName="currentKey"
-            [matChipInputFor]="chipGrid"
-            [matAutocomplete]="auto"
-            [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+            class="w-full border border-gray-300 rounded-xl outline-none p-3"
+            placeholder="Title"
+            formControlName="title"
           />
-          <mat-autocomplete #auto="matAutocomplete" (optionSelected)="selected($event)">
-            @for (key of filteredKeys(); track $index) {
-              @if ($index < 7) {
-                <mat-option [value]="key">{{ key }}</mat-option>
-              }
-            }
-          </mat-autocomplete>
-        </mat-form-field>
-      </div>
-      <div class="flex w-full justify-end">
-        <button
-          class="text-black rounded-xl px-4 py-2 mr-2 hover:bg-secondary hover:text-white font-semibold transition"
-          (click)="toggleSubmit()"
-          >Cancel</button
-        >
-        <button
-          class="text-primary hover:bg-orange hover:text-white rounded-xl px-4 py-2 transition font-semibold"
-          (click)="toggleSubmit()"
-          >Submit</button
-        >
-      </div>
-    </form>
+        </div>
+        <div class="mb-6">
+          <textarea
+            class="w-full border border-gray-300 rounded-xl outline-none p-3"
+            rows="20"
+            placeholder="Description"
+            maxlength="250"
+            formControlName="description"
+          ></textarea>
+        </div>
+        <div class="mb-6">
+          <textarea
+            class="w-full border border-gray-300 rounded-xl outline-none p-3"
+            rows="10"
+            placeholder="Quest Description"
+            maxlength="5000"
+            formControlName="questDescription"
+          ></textarea>
+        </div>
+        <div class="mb-6">
+          <input
+            class="w-full border border-gray-300 rounded-xl outline-none p-3"
+            placeholder="Repository"
+            formControlName="repository"
+          />
+        </div>
+        <div class="mb-6"> </div>
+        <div class="flex w-full justify-end">
+          <button
+            class="text-black rounded-xl px-4 py-2 mr-2 hover:bg-secondary hover:text-white font-semibold transition"
+            (click)="closeModal()"
+            >Cancel</button
+          >
+          <button
+            class="text-primary hover:bg-orange hover:text-white rounded-xl px-4 py-2 transition font-semibold"
+            (click)="closeModal()"
+            >Submit</button
+          >
+        </div>
+      </form>
+    </div>
   </div>
-</div>
+</dialog>

@@ -1,13 +1,8 @@
-@use '@angular/material' as mat;
-
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 @import url('https://fonts.googleapis.com/css2?family=Montserrat+Alternates:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
-
-@include mat-core();
-
 
 @layer base {
   :root {
@@ -16,8 +11,8 @@
     --color-tertiary: 0 73 99;
     --border-primary: 51 65 85;
     --background-primary: 242 244 245;
-    --background-secondary:  1 43 58;
-    --background-tertiary:  0 73 99;
+    --background-secondary: 1 43 58;
+    --background-tertiary: 0 73 99;
     --orange: 249 115 22;
     --warm-gray: 244 242 238;
   }
@@ -26,29 +21,31 @@
 @layer components {
   body {
     @apply m-0 p-0 h-full;
-    font-family: "Montserrat Alternates", sans-serif;
+    font-family: 'Montserrat Alternates', sans-serif;
   }
 
   .text-alt {
-    font-family: "Montserrat Alternates", sans-serif;
+    font-family: 'Montserrat Alternates', sans-serif;
   }
 
   .text-default {
-    font-family: "Montserrat", sans-serif;
+    font-family: 'Montserrat', sans-serif;
   }
 
   .home-card {
-    @apply bg-primary rounded-3xl text-primary p-5 shadow-md
+    @apply bg-primary rounded-3xl text-primary p-5 shadow-md;
   }
 
   .picture-card {
-    @apply bg-white rounded-xl text-primary p-5 w-max
+    @apply bg-white rounded-xl text-primary p-5 w-max;
   }
 
   .button-primary {
-    @apply bg-secondary text-white font-bold text-xl px-8 py-3 rounded-xl hover:bg-tertiary hover:scale-105 active:bg-secondary transition
+    @apply bg-secondary text-white font-bold text-xl px-8 py-3 rounded-xl hover:bg-tertiary hover:scale-105 active:bg-secondary transition;
   }
 }
 
-html, body { height: 100%; }
-
+html,
+body {
+  height: 100%;
+}
