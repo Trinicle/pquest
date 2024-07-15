@@ -7,10 +7,6 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 })
 export class HomeComponent implements OnInit, OnDestroy {
   constructor() {}
-  ngOnInit(): void {
-    throw new Error('Method not implemented.');
-  }
-  ngOnDestroy(): void {
-    throw new Error('Method not implemented.');
-  }
+  ngOnInit(): void {}
+  ngOnDestroy(): void {}
 }

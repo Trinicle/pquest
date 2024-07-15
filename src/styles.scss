@@ -44,3 +44,6 @@
     @apply bg-secondary text-white font-bold text-xl px-8 py-3 rounded-xl hover:bg-tertiary hover:scale-105 active:bg-secondary transition
   }
 }
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
