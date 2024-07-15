@@ -46,10 +46,35 @@
         />
       </div>
       <div class="mb-6">
-        <input
-          class="w-full border border-gray-300 rounded-xl outline-none p-3"
-          formControlName="currentKey"
-        />
+        <mat-form-field class="example-chip-list">
+          <mat-label>Keys</mat-label>
+          <mat-chip-grid #chipGrid aria-label="Fruit selection">
+            @for (key of keys(); track $index) {
+              <mat-chip-row (removed)="remove(key)">
+                {{ key }}
+                <button matChipRemove [attr.aria-label]="'remove ' + key">
+                  <mat-icon>cancel</mat-icon>
+                </button>
+              </mat-chip-row>
+            }
+          </mat-chip-grid>
+          <input
+            name="currentKey"
+            placeholder="New key..."
+            #fruitInput
+            formControlName="currentKey"
+            [matChipInputFor]="chipGrid"
+            [matAutocomplete]="auto"
+            [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+          />
+          <mat-autocomplete #auto="matAutocomplete" (optionSelected)="selected($event)">
+            @for (key of filteredKeys(); track $index) {
+              @if ($index < 7) {
+                <mat-option [value]="key">{{ key }}</mat-option>
+              }
+            }
+          </mat-autocomplete>
+        </mat-form-field>
       </div>
       <div class="flex w-full justify-end">
         <button
@@ -65,30 +90,4 @@
       </div>
     </form>
   </div>
-  <form>
-    <mat-form-field class="example-chip-list">
-      <mat-label>Favorite Fruits</mat-label>
-      <mat-chip-grid #chipGrid aria-label="Fruit selection">
-        <mat-chip-row *ngFor="let fruit of fruits(); let i = index" (removed)="remove(fruit)">
-          {{ fruit }}
-          <button matChipRemove [attr.aria-label]="'remove ' + fruit">
-            <mat-icon>cancel</mat-icon>
-          </button>
-        </mat-chip-row>
-      </mat-chip-grid>
-      <input
-        name="currentFruit"
-        placeholder="New Fruit..."
-        #fruitInput
-        [(ngModel)]="currentFruit"
-        [matChipInputFor]="chipGrid"
-        [matAutocomplete]="auto"
-        [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
-        (matChipInputTokenEnd)="add($event)"
-      />
-      <mat-autocomplete #auto="matAutocomplete" (optionSelected)="selected($event)">
-        <mat-option *ngFor="let fruit of filteredFruits()" [value]="fruit">{{ fruit }}</mat-option>
-      </mat-autocomplete>
-    </mat-form-field>
-  </form>
 </div>

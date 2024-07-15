@@ -1,12 +1,26 @@
-import { Component, computed, inject, Inject, OnDestroy, OnInit, signal } from '@angular/core';
+import {
+  Component,
+  computed,
+  inject,
+  Inject,
+  model,
+  OnDestroy,
+  OnInit,
+  signal,
+} from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormGroup, FormControl, Validators, ReactiveFormsModule } from '@angular/forms';
+import {
+  FormGroup,
+  FormControl,
+  Validators,
+  ReactiveFormsModule,
+  FormsModule,
+} from '@angular/forms';
 import { DIALOG_DATA, DialogModule, DialogRef } from '@angular/cdk/dialog';
 import { LiveAnnouncer } from '@angular/cdk/a11y';
 
 import { COMMA, ENTER } from '@angular/cdk/keycodes';
 import { ChangeDetectionStrategy } from '@angular/core';
-import { FormsModule } from '@angular/forms';
 import {
   MatAutocompleteModule,
   MatAutocompleteSelectedEvent,
@@ -49,8 +63,8 @@ export class ModalComponent implements OnInit, OnDestroy {
       Validators.minLength(1),
       Validators.maxLength(3000),
     ]),
-    currentKey: new FormControl(''),
     keys: new FormControl([]),
+    currentKey: new FormControl(''),
     completeByDate: new FormControl('', [
       Validators.required,
       Validators.minLength(1),
@@ -58,8 +72,8 @@ export class ModalComponent implements OnInit, OnDestroy {
     ]),
     repository: new FormControl(''),
   });
+  readonly separatorKeysCodes: number[] = [ENTER, COMMA];
 
-  signal = signal([]);
   allKeys: string[] = [
     'Angular',
     'React',
@@ -71,13 +85,6 @@ export class ModalComponent implements OnInit, OnDestroy {
     'C#',
     '.NET',
   ];
-
-  filteredKeys = computed(() => {
-    const currentKey = this.form.get('currentKey')?.value?.toLowerCase();
-    return currentKey
-      ? this.allKeys.filter(key => key.toLowerCase().includes(currentKey))
-      : this.allKeys.slice();
-  });
 
   constructor(
     private dialogRef: DialogRef<string>,
@@ -91,47 +98,34 @@ export class ModalComponent implements OnInit, OnDestroy {
     this.dialogRef.close();
   }
 
-  readonly separatorKeysCodes: number[] = [ENTER, COMMA];
-  currentFruit = '';
-  readonly fruits = signal(['Lemon']);
-  readonly allFruits: string[] = ['Apple', 'Lemon', 'Lime', 'Orange', 'Strawberry'];
-  readonly filteredFruits = computed(() => {
-    const currentFruit = this.currentFruit.toLowerCase();
-    return currentFruit
-      ? this.allFruits.filter(fruit => fruit.toLowerCase().includes(currentFruit))
-      : this.allFruits.slice();
+  readonly keys = signal([] as string[]);
+  readonly filteredKeys = computed(() => {
+    const currentKey = this.form.get('currentKey')?.value?.toLowerCase();
+    return currentKey
+      ? this.allKeys.filter(key => key.toLowerCase().includes(currentKey))
+      : this.allKeys.slice();
   });
 
   readonly announcer = inject(LiveAnnouncer);
 
-  add(event: MatChipInputEvent): void {
-    const value = (event.value || '').trim();
-
-    // Add our fruit
-    if (value) {
-      this.fruits.update(fruits => [...fruits, value]);
-    }
-
-    // Clear the input value
-    this.currentFruit = '';
-  }
-
   remove(fruit: string): void {
-    this.fruits.update(fruits => {
-      const index = fruits.indexOf(fruit);
+    this.keys.update(keys => {
+      const index = keys.indexOf(fruit);
       if (index < 0) {
-        return fruits;
+        return keys;
       }
 
-      fruits.splice(index, 1);
+      keys.splice(index, 1);
       this.announcer.announce(`Removed ${fruit}`);
-      return [...fruits];
+      return [...keys];
     });
   }
 
   selected(event: MatAutocompleteSelectedEvent): void {
-    this.fruits.update(fruits => [...fruits, event.option.viewValue]);
-    this.currentFruit = '';
+    this.keys.update(keys => [...keys, event.option.viewValue]);
+
+    this.form.patchValue({ currentKey: '' });
+    console.log(this.form.get('currentKey')?.value);
     event.option.deselect();
   }
 }
