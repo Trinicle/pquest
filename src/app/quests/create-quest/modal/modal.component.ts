@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
+import { Component, HostListener, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { FormGroup, FormControl, Validators, ReactiveFormsModule } from '@angular/forms';
 
 @Component({
@@ -38,20 +38,30 @@ export class ModalComponent implements OnInit, OnDestroy {
     repository: new FormControl(''),
   });
 
+  isModalOpen: boolean = false;
+
   constructor() {}
 
-  ngOnInit(): void {
-    throw new Error('Method not implemented.');
-  }
+  ngOnInit(): void {}
   ngOnDestroy(): void {
     throw new Error('Method not implemented.');
   }
 
   showModal() {
+    this.isModalOpen = true;
     this.modal.nativeElement.showModal();
   }
 
   closeModal() {
+    this.isModalOpen = false;
     this.modal.nativeElement.close();
+  }
+
+  @HostListener('document:click', ['$event'])
+  onClick(event: MouseEvent) {
+    if (this.modal.nativeElement.contains(event.target) && this.isModalOpen) {
+      this.isModalOpen = false;
+      this.closeModal();
+    }
   }
 }
