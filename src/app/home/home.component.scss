@@ -21,3 +21,7 @@
     max-width: 1536px;
   }
 }
+
+.user-card {
+  @apply border rounded-lg p-6 bg-white shadow-lg
+}

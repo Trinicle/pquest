@@ -1,0 +1,14 @@
+<div class="border rounded-xl bg-white text-default w-full border-gray-300 pb-4">
+  <button (click)="onToggleCreateQuest()" class="w-full p-4 pb-0"> Create a new quest </button>
+  <div
+    class="px-4 grid text-sm after:px-3.5 after:py-2.5 [&>textarea]:text-inherit after:text-inherit [&>textarea]:resize-none [&>textarea]:overflow-hidden [&>textarea]:[grid-area:1/1/2/2] after:[grid-area:1/1/2/2] after:whitespace-pre-wrap after:invisible after:content-[attr(data-cloned-val)_'_'] after:border"
+    [ngClass]="showCreateQuest ? 'show' : 'hide'"
+  >
+    <textarea
+      class="w-full border border-gray-300 rounded-xl outline-none p-3 overflow-hidden resize-none h-auto"
+      rows="1"
+      onInput="this.parentNode.dataset.clonedVal = this.value"
+      placeholder="Description"
+    ></textarea>
+  </div>
+</div>
