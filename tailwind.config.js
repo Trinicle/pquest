@@ -3,6 +3,12 @@ module.exports = {
   content: ['./src/**/*.{html,js}'],
   theme: {
     extend: {
+      scrollbar: {
+        DEFAULT: {
+          track: 'rounded-full bg-slate-300',
+          thumb: 'rounded-full bg-slate-700',
+        },
+      },
       textColor: {
         'primary': 'rgb(var(--color-primary) / <alpha-value>)',
         'secondary': 'rgb(var(--color-secondary) / <alpha-value>)',
@@ -27,5 +33,8 @@ module.exports = {
   },
   plugins: [
     require('daisyui'),
+    require('tailwind-scrollbar')({
+      nocompatible: true
+    }),
   ],
 };
