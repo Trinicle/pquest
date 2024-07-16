@@ -1,5 +1,13 @@
 import { CommonModule } from '@angular/common';
-import { Component, HostListener, OnDestroy, OnInit, ViewChild } from '@angular/core';
+import {
+  Component,
+  ElementRef,
+  HostListener,
+  OnDestroy,
+  OnInit,
+  viewChild,
+  ViewChild,
+} from '@angular/core';
 import { FormGroup, FormControl, Validators, ReactiveFormsModule } from '@angular/forms';
 
 @Component({
@@ -10,7 +18,8 @@ import { FormGroup, FormControl, Validators, ReactiveFormsModule } from '@angula
   styleUrl: './modal.component.scss',
 })
 export class ModalComponent implements OnInit, OnDestroy {
-  @ViewChild('modal') modal: any;
+  @ViewChild('modal') modal!: ElementRef;
+  @ViewChild('modalContent') modalContent!: ElementRef;
 
   form = new FormGroup({
     title: new FormControl('', [
@@ -28,7 +37,6 @@ export class ModalComponent implements OnInit, OnDestroy {
       Validators.minLength(1),
       Validators.maxLength(3000),
     ]),
-    keys: new FormControl([]),
     currentKey: new FormControl(''),
     completeByDate: new FormControl('', [
       Validators.required,
@@ -39,6 +47,7 @@ export class ModalComponent implements OnInit, OnDestroy {
   });
 
   isModalOpen: boolean = false;
+  keys: string[] = ['test', 'hello'];
 
   constructor() {}
 
@@ -57,10 +66,39 @@ export class ModalComponent implements OnInit, OnDestroy {
     this.modal.nativeElement.close();
   }
 
+  addKey() {
+    const currentValue: string = this.form.get('currentKey')?.value as string;
+    if (currentValue !== '') {
+      this.keys.push(currentValue);
+      this.form.patchValue({ currentKey: '' });
+    }
+  }
+
+  removeKey(inputKey: string) {
+    console.log('test');
+    this.keys = this.keys.filter(key => key !== inputKey);
+  }
+
+  resetModal() {
+    this.form.reset();
+  }
+
+  submitModal() {
+    this.resetModal();
+    this.closeModal();
+  }
+
   @HostListener('document:click', ['$event'])
-  onClick(event: MouseEvent) {
-    if (this.modal.nativeElement.contains(event.target) && this.isModalOpen) {
-      this.isModalOpen = false;
+  onClick(event: PointerEvent) {
+    if (event.pointerId === -1) {
+      return;
+    }
+
+    if (
+      this.modal.nativeElement.hasAttribute('open') &&
+      !this.modalContent.nativeElement.contains(event.target) &&
+      this.modal.nativeElement.contains(event.target)
+    ) {
       this.closeModal();
     }
   }

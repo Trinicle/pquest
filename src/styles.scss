@@ -18,10 +18,40 @@
   }
 }
 
+
+
 @layer components {
   body {
     @apply m-0 p-0 h-full;
     font-family: 'Montserrat Alternates', sans-serif;
+  }
+
+  .btn {
+    @apply border-none
+  }
+
+  .btn-primary {
+    @apply text-primary hover:bg-orange hover:text-white rounded-lg bg-white border-orange-500
+  }
+  
+  .btn-secondary {
+    @apply text-black hover:bg-slate-500 bg-slate-400 
+  }
+
+  .btn-error {
+    @apply bg-red-500 hover:bg-red-700
+  }
+
+  .btn-success {
+    @apply bg-green-500 hover:bg-green-700
+  }
+
+  .btn-info {
+    @apply bg-secondary text-white font-bold text-xl hover:bg-tertiary active:bg-secondary
+  }
+  
+  .card {
+    @apply p-6 border border-gray-300 rounded-xl bg-white mb-6 text-default
   }
 
   .text-alt {
@@ -41,7 +71,7 @@
   }
 
   .button-primary {
-    @apply bg-secondary text-white font-bold text-xl px-8 py-3 rounded-xl hover:bg-tertiary hover:scale-105 active:bg-secondary transition;
+    @apply px-8 py-3 rounded-xl  hover:scale-105  transition;
   }
 }
 
