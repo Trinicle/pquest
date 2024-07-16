@@ -51,23 +51,8 @@
             @if (keys.length > 0) {
               <div class="flex flex-wrap gap-2 mb-4">
                 @for (key of keys; track $index) {
-                  <button (click)="removeKey(key)" type="button">
-                    <div class="badge bg-slate-300 gap-2">
-                      <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        fill="none"
-                        viewBox="0 0 24 24"
-                        class="inline-block h-4 w-4 stroke-current"
-                      >
-                        <path
-                          stroke-linecap="round"
-                          stroke-linejoin="round"
-                          stroke-width="2"
-                          d="M6 18L18 6M6 6l12 12"
-                        ></path>
-                      </svg>
-                      {{ key }}
-                    </div>
+                  <button (click)="removeKey(key)" type="button" class="input-badge">
+                    {{ key }}
                   </button>
                 }
               </div>
@@ -82,7 +67,7 @@
         </div>
         <div class="flex w-full">
           <div class="mr-auto">
-            <button class="btn btn-error" (click)="closeModal()">Reset</button>
+            <button class="btn btn-error" (click)="resetModal()">Reset</button>
           </div>
           <div class="justify-end">
             <button class="btn btn-secondary mr-2" (click)="closeModal()">Cancel</button>
