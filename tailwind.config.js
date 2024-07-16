@@ -16,7 +16,6 @@ module.exports = {
         'primary': 'rgb(var(--background-primary) / <alpha-value>)',
         'secondary': 'rgb(var(--background-secondary) / <alpha-value>)',
         'tertiary': 'rgb(var(--background-tertiary) / <alpha-value>)',
-        'orange': 'rgb(var(--orange) / <alpha-value>)',
         'warm': 'rgb(var(--warm-gray) / <alpha-value>)',
       },
       fill: {

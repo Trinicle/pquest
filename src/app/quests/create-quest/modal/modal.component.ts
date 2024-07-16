@@ -75,7 +75,6 @@ export class ModalComponent implements OnInit, OnDestroy {
   }
 
   removeKey(inputKey: string) {
-    console.log('test');
     this.keys = this.keys.filter(key => key !== inputKey);
   }
 
