@@ -34,7 +34,8 @@ module.exports = {
   plugins: [
     require('daisyui'),
     require('tailwind-scrollbar')({
-      nocompatible: true
+      nocompatible: true,
+      preferredStrategy: 'pseudoelements'
     }),
   ],
 };

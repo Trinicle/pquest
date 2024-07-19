@@ -1,5 +1,5 @@
-<div class="card p-2 rounded-none border-b-0">
-  <div class="grid grid-cols-[2fr_1fr]">
+<button class="card p-2 rounded-none border-0 border-b w-full" #activeButton>
+  <div class="grid grid-cols-[2fr_1fr] w-full text-left">
     <div class="flex flex-col">
       <div class="flex">
         <div class="mr-3">
@@ -14,9 +14,12 @@
       </div>
     </div>
     <div class="flex">
-      <button class="flex flex-end ml-auto h-min">
-        <ng-icon name="bootstrapXLg"></ng-icon>
+      <button
+        class="flex flex-end ml-auto h-min hover:bg-slate-200 transition rounded-full"
+        #dismissButton
+      >
+        <ng-icon name="bootstrapXLg" class="m-2"></ng-icon>
       </button>
     </div>
   </div>
-</div>
+</button>

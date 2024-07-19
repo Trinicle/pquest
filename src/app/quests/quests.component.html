@@ -1,14 +1,20 @@
-<div class="bg-warm h-screen flex">
+<div class="h-screen flex w-screen">
   <div class="quest-container mx-auto flex flex-col w-full h-full">
-    <pq-create-quest></pq-create-quest>
     <div class="grid grid-cols-[200px_1fr] gap-20 flex-grow min-h-0">
       <div>
-        <pq-user-info></pq-user-info>
+        <div class="sticky top-20 text-default">
+          <div class="mb-4">
+            <pq-user-info></pq-user-info>
+          </div>
+          <div>
+            <pq-create-quest></pq-create-quest>
+          </div>
+        </div>
       </div>
-      <div class="flex flex-col flex-grow min-h-0">
-        <div class="flex flex-grow min-h-0">
-          <div class="max-w-[400px] flex flex-col min-h-0">
-            <div>
+      <div class="flex flex-col flex-grow min-h-0 border">
+        <div class="grid grid-cols-[3fr_4fr] flex-grow bg-white overflow-y-auto">
+          <div class="flex flex-col overflow-y-auto">
+            <div class="">
               <button
                 class="flex text-default text-xs items-center w-full bg-orange-500 hover:bg-orange-700 transition p-4"
               >
@@ -29,71 +35,14 @@
                 </div>
               </button>
             </div>
-            <div class="overflow-y-scroll">
-              <div class="flex-grow bg-white">
+            <div class="overflow-y-auto">
+              @for (item of temp; track $index) {
                 <pq-quest-card></pq-quest-card>
-                <pq-quest-card></pq-quest-card>
-                <pq-quest-card></pq-quest-card>
-                <pq-quest-card></pq-quest-card>
-                <pq-quest-card></pq-quest-card>
-                <pq-quest-card></pq-quest-card>
-                <pq-quest-card></pq-quest-card>
-                <pq-quest-card></pq-quest-card>
-                <pq-quest-card></pq-quest-card>
-              </div>
+              }
             </div>
           </div>
-          <div class="flex-grow min-h-0">
-            <div class="card rounded-none border-l-0 overflow-y-scroll h-full max-w-[550px]">
-              <div class="mb-4">
-                <div class="flex items-center">
-                  <div class="mr-3">
-                    <img
-                      src="assets/images/user-image-with-black-background.png"
-                      class="w-[48px]"
-                    />
-                  </div>
-                  <div>Blank Company</div>
-                </div>
-                <div class="mt-2">
-                  <h2 class="card-title text-lg font-bold">.NET API Call Bug Fix</h2>
-                  <p class="text-gray-400 text-xs">Manufacturing - Chicago, IL</p>
-                </div>
-              </div>
-              <div class="mb-4">
-                <div class="mb-2">
-                  <div class="flex justify-between w-full">
-                    <h2 class="font-semibold"> Skills </h2>
-                    <span class="text-xs text-gray-400">hold shift to scroll</span>
-                  </div>
-                </div>
-                <div class="carousel rounded-box w-full gap-2">
-                  <div class="carousel-item">
-                    <div class="badge"> .NET </div>
-                  </div>
-                  <div class="carousel-item">
-                    <div class="badge"> C# </div>
-                  </div>
-                  <div class="carousel-item">
-                    <div class="badge"> Databases </div>
-                  </div>
-                  <div class="carousel-item">
-                    <div class="badge"> Data Structures </div>
-                  </div>
-                  <div class="carousel-item">
-                    <div class="badge"> OOP </div>
-                  </div>
-                  <div class="carousel-item">
-                    <div class="badge"> SQL </div>
-                  </div>
-                  <div class="carousel-item">
-                    <div class="badge"> SQLite </div>
-                  </div>
-                </div>
-                <div class="flex flex-wrap gap-2"> </div>
-              </div>
-              <div class="">asasds </div>
-            </div>
+          <div class="overflow-y-auto">
+            <pq-quest-info></pq-quest-info>
           </div>
         </div>
       </div>
