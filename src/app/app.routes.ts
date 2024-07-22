@@ -1,18 +1,23 @@
-import { NgModule } from '@angular/core';
-import { RouterModule, Routes } from '@angular/router';
+import { Routes } from '@angular/router';
 import { HomeComponent } from './home/home.component';
 import { QuestsComponent } from './quests/quests.component';
+import { CreateQuestComponent } from './quests/create-quest/create-quest.component';
 
-const routes: Routes = [
+export const routes: Routes = [
   {
     path: 'home',
     component: HomeComponent,
-    title: 'Home',
+    title: 'PQuest',
   },
   {
     path: 'quests',
     component: QuestsComponent,
-    title: 'Quests',
+    title: 'PQuest',
+  },
+  {
+    path: 'create-quest',
+    component: CreateQuestComponent,
+    title: 'PQuest',
   },
   {
     path: '',
@@ -20,9 +25,3 @@ const routes: Routes = [
     pathMatch: 'prefix',
   },
 ];
-
-@NgModule({
-  imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule],
-})
-export class AppRoutingModule {}

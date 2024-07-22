@@ -1,4 +1,76 @@
-<div class="border rounded-xl bg-white text-default w-full border-gray-300 pb-4">
-  <button (click)="openModal()" class="w-full p-4 pb-0 font-bold"> Create Quest </button>
+<div class="min-h-screen bg-warm">
+  <div class="py-20">
+    <div class="grid grid-cols-[800px_max-content] gap-6 w-min mx-auto">
+      <div class="rounded-lg bg-white border border-gray-300">
+        <div class="p-6 text-default">
+          <form [formGroup]="form" (keydown.enter)="$event.preventDefault()">
+            <div class="mb-6">
+              <input
+                class="w-full border border-gray-300 rounded-md outline-none py-1 px-2"
+                placeholder="Title"
+                formControlName="title"
+              />
+            </div>
+            <div class="mb-6 text-default">
+              <textarea [froalaEditor]="options" formControlName="description"></textarea>
+            </div>
+
+            <div class="mb-6">
+              <input
+                class="w-full border border-gray-300 rounded-md outline-none py-1 px-2"
+                placeholder="Repository"
+                formControlName="repository"
+              />
+            </div>
+            <div class="mb-6 w-full border border-gray-300 rounded-md outline-none py-1 px-2">
+              <div class="flex flex-col">
+                @if (keys.length > 0) {
+                  <div class="flex flex-wrap gap-2 mb-4">
+                    @for (key of keys; track $index) {
+                      <button
+                        (click)="removeKey(key)"
+                        type="button"
+                        class="input-badge rounded-full"
+                      >
+                        {{ key }}
+                      </button>
+                    }
+                  </div>
+                }
+                <input
+                  class="border-none outline-none"
+                  placeholder="Keys"
+                  formControlName="currentKey"
+                  (keydown.enter)="addKey()"
+                />
+              </div>
+            </div>
+            <div class="flex w-full">
+              <div class="mr-auto">
+                <button class="btn btn-error" (click)="form.reset()">Reset</button>
+              </div>
+              <div class="justify-end">
+                <button class="btn btn-secondary mr-2" (click)="onToggleBack()">Back</button>
+                <button class="btn btn-success" (click)="onToggleSubmit()">Submit</button>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+      <div class="bg-white rounded-lg border border-gray-300 h-fit">
+        <div class="flex flex-col p-4">
+          <div class="flex">
+            <div class="mr-3">
+              <img src="assets/images/user-image-with-black-background.png" class="w-[48px]" />
+            </div>
+            <div class="flex flex-col text-xs">
+              <p class="font-semibold">New user</p>
+              <p class="text-gray-400">Junior Software Developer</p>
+              <p class="text-gray-400">Blank Company</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
-<pq-modal></pq-modal>
