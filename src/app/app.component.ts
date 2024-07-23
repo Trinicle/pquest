@@ -1,6 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
-import { FroalaEditorModule, FroalaViewModule } from 'angular-froala-wysiwyg';
 
 @Component({
   selector: 'app-root',
@@ -9,6 +8,10 @@ import { FroalaEditorModule, FroalaViewModule } from 'angular-froala-wysiwyg';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss'],
 })
-export class AppComponent {
+export class AppComponent implements OnInit {
   title = 'pquest';
+
+  constructor() {}
+
+  ngOnInit(): void {}
 }

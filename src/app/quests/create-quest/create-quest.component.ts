@@ -35,12 +35,15 @@ export class CreateQuestComponent implements OnInit, OnDestroy {
   isModalOpen: boolean = false;
   keys: string[] = ['test', 'hello'];
 
-  options: Object = {
+  options = {
     toolbarButtons: [['bold', 'italic', 'underline', 'clearFormatting']],
     events: {
       initialized: function (editor: any) {
         editor._editor.el.classList.add('text-default');
-        editor._editor.el.classList.remove('default-styles-1');
+        const styleElement = document.head.querySelector('style#default-styles');
+        if (styleElement) {
+          document.head.removeChild(styleElement);
+        }
       },
     },
   };
