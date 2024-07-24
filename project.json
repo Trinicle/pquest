@@ -21,13 +21,8 @@
         "tsConfig": "tsconfig.app.json",
         "inlineStyleLanguage": "scss",
         "assets": ["src/favicon.ico", "src/assets"],
-        "styles": [
-          "src/styles.scss",
-          "./node_modules/froala-editor/css/froala_editor.pkgd.min.css",
-          "./node_modules/froala-editor/css/froala_style.min.css",
-          "./node_modules/font-awesome/css/font-awesome.min.css"
-        ],
-        "scripts": []
+        "styles": ["src/styles.scss", "./node_modules/font-awesome/css/font-awesome.min.css"],
+        "scripts": ["./node_modules/froala-editor/js/froala_editor.pkgd.min.js"]
       },
       "configurations": {
         "production": {

@@ -38,4 +38,7 @@ module.exports = {
       preferredStrategy: 'pseudoelements'
     }),
   ],
+  corePlugins: {
+    preflight: false
+  }
 };

@@ -2,6 +2,8 @@
 @tailwind components;
 @tailwind utilities;
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
+@import '../node_modules/froala-editor/css/froala_editor.pkgd.min.css';
+@import '../node_modules/froala-editor/css/froala_style.min.css';
 
 @layer base {
   :root {
@@ -20,6 +22,19 @@
   body {
     @apply m-0 p-0 bg-warm;
     font-family: 'Montserrat', sans-serif;
+  }
+
+  p,
+  h1,
+  h2,
+  h3,
+  h4,
+  h5 {
+    @apply m-0 p-0;
+  }
+
+  .header-button {
+    @apply flex text-default text-xs items-center w-full bg-orange-500 hover:bg-orange-700 transition p-4 border-none;
   }
 
   .btn {
@@ -51,7 +66,7 @@
   }
 
   .card {
-    @apply p-6 border border-gray-300 rounded-xl bg-white text-default;
+    @apply p-6 border border-gray-300 rounded-xl bg-white text-default border-solid;
   }
 
   .input-badge {

@@ -6,46 +6,33 @@
           <div class="mb-4">
             <pq-user-info></pq-user-info>
           </div>
-          <div>
-            <div class="border rounded-xl bg-white text-default w-full border-gray-300 pb-4">
-              <button (click)="onCreateQuest()" class="w-full p-4 pb-0 font-bold">
-                Create Quest
-              </button>
-            </div>
-          </div>
+          <button (click)="onCreateQuest()" class="create-quest"> Create Quest </button>
         </div>
       </div>
-      <div class="flex flex-col flex-grow min-h-0 border">
-        <div class="grid grid-cols-[3fr_4fr] flex-grow bg-white overflow-y-auto">
-          <div class="flex flex-col overflow-y-auto">
-            <div class="">
-              <button
-                class="flex text-default text-xs items-center w-full bg-orange-500 hover:bg-orange-700 transition p-4"
-              >
-                <div class="flex w-full">
-                  <div class="mr-auto">
-                    <p class="font-semibold">9 results</p>
-                  </div>
-                  <div class="justify-end">
-                    <p class="text-right">
-                      Sort By:
-                      <span class="text-black font-semibold">Top</span>
-                      <img
-                        src="assets/images/down-arrow.png"
-                        class="w-[10px] inline align-middle"
-                      />
-                    </p>
-                  </div>
+      <div class="flex flex-col flex-grow min-h-0 border border-solid border-slate-300">
+        <div class="grid grid-cols-[3fr_4fr] flex-grow bg-white overflow-y-hidden">
+          <div class="flex flex-col overflow-y-hidden">
+            <button class="header-button">
+              <div class="flex w-full">
+                <div class="mr-auto">
+                  <p class="font-semibold">9 results</p>
                 </div>
-              </button>
-            </div>
+                <div class="justify-end">
+                  <p class="text-right">
+                    Sort By:
+                    <span class="text-black font-semibold">Top</span>
+                    <img src="assets/images/down-arrow.png" class="w-[10px] inline align-middle" />
+                  </p>
+                </div>
+              </div>
+            </button>
             <div class="overflow-y-auto">
               @for (item of temp; track $index) {
                 <pq-quest-card></pq-quest-card>
               }
             </div>
           </div>
-          <div class="overflow-y-auto">
+          <div class="overflow-y-scroll">
             <pq-quest-info></pq-quest-info>
           </div>
         </div>

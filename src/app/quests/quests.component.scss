@@ -16,3 +16,7 @@
     max-width: 1280px;
   }
 }
+
+.create-quest {
+  @apply w-full p-4 font-bold bg-white border border-gray-300 rounded-xl active:scale-[.98] transition border-solid hover:bg-gray-200;
+}

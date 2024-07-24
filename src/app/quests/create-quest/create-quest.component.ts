@@ -1,3 +1,8 @@
+import 'froala-editor/js/plugins/link.min.js';
+import 'froala-editor/js/plugins/lists.min.js';
+import 'froala-editor/js/plugins/markdown.min.js';
+import 'froala-editor/js/plugins/char_counter.min.js';
+
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormGroup, FormControl, Validators, ReactiveFormsModule } from '@angular/forms';
@@ -19,10 +24,32 @@ export class CreateQuestComponent implements OnInit, OnDestroy {
       Validators.maxLength(50),
     ]),
     description: new FormControl(
-      'Provide a summary of the quest, runtime, design principles, or basic structure.',
-      [Validators.required, Validators.minLength(1), Validators.maxLength(10000)],
+      `
+      <p>Provide a summary of the quest, runtime, design principles, or basic structure.</p>
+      <p>
+        <s>&ZeroWidthSpace;</s>
+      </p>
+      <p>
+        <strong>[Description]</strong>
+      </p>
+      <p>Description of Quest.</p>
+      <p>
+        <s>&ZeroWidthSpace;</s>
+      </p>
+      <p>
+        <strong>[Structure]</strong>
+      </p>
+      <p>Structure of code.</p>
+      <p>
+        <s>&ZeroWidthSpace;</s>
+      </p>
+      <p>
+        <strong>[References]</strong>
+      </p>
+      <p>Some references that may be useful.</p>
+      `,
+      [Validators.required, Validators.minLength(1), Validators.maxLength(30000)],
     ),
-
     currentKey: new FormControl(''),
     completeByDate: new FormControl('', [
       Validators.required,
@@ -36,16 +63,24 @@ export class CreateQuestComponent implements OnInit, OnDestroy {
   keys: string[] = ['test', 'hello'];
 
   options = {
-    toolbarButtons: [['bold', 'italic', 'underline', 'clearFormatting']],
+    toolbarButtons: [
+      ['bold', 'italic', 'underline', 'insertLink', 'clearFormatting'],
+      ['formatOL', 'formatUL'],
+    ],
     events: {
       initialized: function (editor: any) {
         editor._editor.el.classList.add('text-default');
+
         const styleElement = document.head.querySelector('style#default-styles');
         if (styleElement) {
           document.head.removeChild(styleElement);
         }
       },
     },
+    pluginsEnabled: ['lists', 'link', 'charCounter', 'markdown'],
+    tabSpaces: 4,
+    charCounterMax: 10000,
+    charCounterCount: true,
   };
 
   constructor(private router: Router) {}
@@ -73,5 +108,7 @@ export class CreateQuestComponent implements OnInit, OnDestroy {
     this.router.navigate(['/quests']);
   }
 
-  onToggleSubmit() {}
+  onToggleSubmit() {
+    console.log(this.form.get('description')?.value);
+  }
 }
