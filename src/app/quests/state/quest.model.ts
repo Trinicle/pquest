@@ -1,4 +1,4 @@
-import { Affiliation } from '@app/settings/state/account.model';
+import { Organization } from '@app/settings/state/account.model';
 
 export interface Skill {
   name: string;
@@ -7,7 +7,7 @@ export interface Skill {
 export interface Quest {
   id: string;
   name: string;
-  affiliation: Affiliation;
+  organization: Organization;
   skills: Skill[];
   description: string;
   repository: string;

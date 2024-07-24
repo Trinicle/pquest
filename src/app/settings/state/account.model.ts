@@ -1,16 +1,19 @@
 import { Quest } from '@app/quests/state/quest.model';
 
+export type AccountType = 'USER' | 'ORGANIZATION';
+
 export interface Account {
   id: string;
   country: string;
   postalCode?: string;
   city: string;
   image: File;
-  username: string;
+  type: AccountType;
+  email: string;
   password: string;
 }
 
-export interface Affiliation {
+export interface Organization {
   id: string;
   name: string;
   country: string;
@@ -27,17 +30,17 @@ export interface Contact {
   website: string;
 }
 
-export interface Organization extends Account {
+export interface OrganizationAccount extends Account {
   name: string;
   business: string;
   employees: number;
   followers: number;
 }
 
-export interface User extends Account {
+export interface UserAccount extends Account {
   firstName: string;
   lastName: string;
   contactInfo: Contact;
-  affiliations: Affiliation[];
+  organizations: Organization[];
   quests: Quest[];
 }
