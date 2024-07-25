@@ -2,16 +2,39 @@ import { Quest } from '@app/quests/state/quest.model';
 
 export type AccountType = 'USER' | 'ORGANIZATION';
 
+export interface AccountDetail {
+  id: string;
+  country: string;
+  postalCode?: string;
+  city: string;
+  image: File | string;
+  type: AccountType;
+  name: string;
+  email: string;
+  password: string;
+}
+
 export interface Account {
   id: string;
   country: string;
   postalCode?: string;
   city: string;
-  image: File;
+  image: File | string;
   type: AccountType;
-  email: string;
-  password: string;
+  name: string;
 }
+
+export const createAccount = (params: Partial<Account>): AccountDetail => ({
+  id: '',
+  country: '',
+  city: '',
+  image: '',
+  type: 'ORGANIZATION',
+  name: '',
+  email: '',
+  password: '',
+  ...params,
+});
 
 export interface Organization {
   id: string;
@@ -30,16 +53,13 @@ export interface Contact {
   website: string;
 }
 
-export interface OrganizationAccount extends Account {
-  name: string;
+export interface OrganizationAccount extends AccountDetail {
   business: string;
   employees: number;
   followers: number;
 }
 
-export interface UserAccount extends Account {
-  firstName: string;
-  lastName: string;
+export interface UserAccount extends AccountDetail {
   contactInfo: Contact;
   organizations: Organization[];
   quests: Quest[];

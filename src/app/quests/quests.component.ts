@@ -4,6 +4,8 @@ import { UserInfoComponent } from './user-info/user-info.component';
 import { CreateQuestComponent } from './create-quest/create-quest.component';
 import { QuestInfoComponent } from './quest-info/quest-info.component';
 import { Router } from '@angular/router';
+import { Observable, of } from 'rxjs';
+import { AccountQuery } from '@app/settings/state/account.query';
 
 @Component({
   selector: 'pq-quests',
@@ -14,10 +16,20 @@ import { Router } from '@angular/router';
 })
 export class QuestsComponent implements OnInit, OnDestroy {
   temp: string[] = new Array(20);
+  isLoading: Observable<boolean> = of(true);
 
-  constructor(private router: Router) {}
+  constructor(
+    private router: Router,
+    private accountQuery: AccountQuery,
+  ) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.accountQuery.select().subscribe(account => {
+      if (account.id === '') {
+        this.router.navigate(['/login']);
+      }
+    });
+  }
   ngOnDestroy(): void {}
 
   onCreateQuest() {

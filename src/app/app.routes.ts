@@ -22,7 +22,7 @@ export const routes: Routes = [
     title: 'PQuest',
   },
   {
-    path: 'quests',
+    path: 'quests/:id',
     component: QuestsComponent,
     title: 'PQuest',
   },
