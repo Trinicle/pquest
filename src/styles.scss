@@ -33,6 +33,14 @@
     @apply m-0 p-0;
   }
 
+  button {
+    @apply cursor-pointer;
+  }
+
+  .input-box {
+    @apply w-full border border-gray-300 rounded-md outline-none py-2 px-3 border-solid box-border;
+  }
+
   .header-button {
     @apply flex text-default text-xs items-center w-full bg-orange-500 hover:bg-orange-700 transition p-4 border-none;
   }

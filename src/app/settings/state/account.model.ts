@@ -22,9 +22,10 @@ export interface Account {
   image: File | string;
   type: AccountType;
   name: string;
+  email: string;
 }
 
-export const createAccount = (params: Partial<Account>): AccountDetail => ({
+export const createAccount = (params: Partial<Account>): Account => ({
   id: '',
   country: '',
   city: '',
@@ -32,7 +33,6 @@ export const createAccount = (params: Partial<Account>): AccountDetail => ({
   type: 'ORGANIZATION',
   name: '',
   email: '',
-  password: '',
   ...params,
 });
 
